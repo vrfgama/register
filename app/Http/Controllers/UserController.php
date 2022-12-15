@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class FormController extends Controller
+
+class UserController extends Controller
 {
     public function register(Request $request){
         /*
@@ -20,5 +21,15 @@ class FormController extends Controller
         */
 
         User::create($request->all());
+
+        return redirect('/read');
+    }
+
+
+    public function listAll(){
+        
+        $user= User::all();
+  
+        return view('/read', ['user'=>$user]); 
     }
 }

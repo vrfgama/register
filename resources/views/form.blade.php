@@ -16,8 +16,8 @@
         <br><br>
 
         Sexo:<br>
-        <input type="radio" name="sex" value="m">Masculino
-        <input type="radio" name="sex" value="f">Feminino
+        <input type="radio" name="sex" value="M">Masculino
+        <input type="radio" name="sex" value="F">Feminino
         <br><br>
 
         Email:<br>

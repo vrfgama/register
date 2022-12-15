@@ -20,4 +20,6 @@ Route::get('/', function () {
 });
 
 
-Route::post('/register', 'App\Http\Controllers\FormController@register');
+Route::post('/register', 'App\Http\Controllers\UserController@register');
+
+Route::get('/read', 'App\Http\Controllers\UserController@listAll');
