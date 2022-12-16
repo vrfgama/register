@@ -32,4 +32,11 @@ class UserController extends Controller
   
         return view('/read', ['user'=>$user]); 
     }
+
+    public function delete($id){
+        
+        User::find($id)->delete();
+
+        return redirect('/read');
+    }
 }
