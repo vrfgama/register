@@ -39,4 +39,20 @@ class UserController extends Controller
 
         return redirect('/read');
     }
+
+    public function edit($id){
+
+        $user= User::find($id);
+        
+        return view('edit', ['user'=>$user]);
+
+    }
+
+    public function update(Request $request){
+        
+        User::find($request->id)->update($request->all());
+
+        return redirect('/read');
+
+    }
 }

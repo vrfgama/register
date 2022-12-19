@@ -9,7 +9,7 @@
 
 
     <a href='{{url("/delete/$user->id")}}'>Deletar</a>  
-    <a href="/update">Atualizar</a>
+    <a href='{{url("/edit/$user->id")}}'>Atualizar</a>
     </p>
 
 @endforeach
