@@ -7,8 +7,7 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <form action="/register" method="POST">
-    
+    <form action="/register" method="post">
         {{csrf_field()}}
         
         Nome:<br>

@@ -8,8 +8,8 @@
     {{ $user->sex }} <br>
 
 
-    <a href='{{url("/delete/$user->id")}}'>Deletar</a>  
-    <a href='{{url("/edit/$user->id")}}'>Atualizar</a>
+    <a href='/delete/{{ $user->id }}'>Deletar</a>  
+    <a href='/edit/{{ $user->id }}'>Atualizar</a>
     </p>
 
 @endforeach

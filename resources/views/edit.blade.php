@@ -9,13 +9,13 @@
 <body>
     <form action="/update/{{ $user->id }}" method="post">
     {{csrf_field()}}
+    @method('put')
 
     <p>Nome:<br>
     <input type="text" name="name" id="" value="{{ $user->name }}">
     </p>
 
-    <p>
-    Sexo:<br>
+    <p>Sexo:<br>
     @if( $user->sex == 'M' )
     <input type="radio" name="sex" value="M" checked>Masculino 
     <input type="radio" name="sex" value="F">Feminino

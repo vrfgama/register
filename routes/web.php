@@ -28,4 +28,4 @@ Route::get('/delete/{id}', 'App\Http\Controllers\UserController@delete');
 
 Route::get('/edit/{id}', 'App\Http\Controllers\UserController@edit');
 
-Route::post('/update/{id}', 'App\Http\Controllers\UserController@update');
+Route::put('/update/{id}', 'App\Http\Controllers\UserController@update');
