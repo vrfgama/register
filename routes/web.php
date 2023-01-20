@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +15,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::get('/', function () {
-    return view('form');
+    return view('welcome');
 });
 
 
-Route::post('/register', 'App\Http\Controllers\UserController@register');
+/*
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+*/
 
-Route::get('/read', 'App\Http\Controllers\UserController@listAll');
 
-Route::get('/delete/{id}', 'App\Http\Controllers\UserController@delete');
+Route::get('/dashboard', [UserController::class, 'listAll'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/edit/{id}', 'App\Http\Controllers\UserController@edit');
+Route::get('/delete/{id}', [UserController::class, 'delete'])->middleware(['auth']);
 
-Route::put('/update/{id}', 'App\Http\Controllers\UserController@update');
+
+
+Route::get('/edit/{id}', [UserController::class, 'edit'])->middleware(['auth']);
+
+Route::put('/edit/{id}', [UserController::class, 'update'])->middleware(['auth']);
+
+
+
+Route::get('/register_user', [UserController::class, 'create'])->middleware(['auth'])->name('register_user');
+
+Route::post('/register_user', [UserController::class, 'store'])->middleware(['auth']);
+
+
+
+
+require __DIR__.'/auth.php';

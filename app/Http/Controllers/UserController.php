@@ -4,40 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
-    public function register(Request $request){
+    public function create(){
+
+        return view('form');
+    }
+    
+    public function store(Request $request){
         /*
         $user= new User;
-
         $user->name= $_POST['name'];
         $user->email= $_POST['email'];
         $user->sex= $_POST['sex'];
         $user->birth= $_POST['birth'];
-
         $user->save();
         */
 
-        User::create($request->all());
+        //User::create($request->all());
 
-        return redirect('/read');
+        User::create([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'sex'=> $request->sex,
+            'birth'=> $request->birth,
+            'password'=> Hash::make($request->password)
+        ]);
+
+        return redirect('/dashboard');
     }
 
 
     public function listAll(){
         
-        $user= User::all();
+        $users= User::all();
   
-        return view('/read', ['user'=>$user]); 
+        return view('dashboard', ['users'=>$users]); 
     }
 
     public function delete($id){
         
         User::find($id)->delete();
 
-        return redirect('/read');
+        return redirect('/dashboard');
     }
 
     public function edit($id){
@@ -50,9 +62,16 @@ class UserController extends Controller
 
     public function update(Request $request){
         
-        User::find($request->id)->update($request->all());
+        User::find($request->id)
+            ->update([
+                'name'=> $request->name,
+                'email'=> $request->email,
+                'sex'=> $request->sex,
+                'birth'=> $request->birth,
+                'password'=> Hash::make($request->password)
+            ]);
 
-        return redirect('/read');
+        return redirect('/dashboard');
 
     }
 }

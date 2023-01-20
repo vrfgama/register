@@ -1,46 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update</title>
-</head>
-<body>
-    <form action="/update/{{ $user->id }}" method="post">
-    {{csrf_field()}}
-    @method('put')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Lista de usuários') }}
+        </h2>
+    </x-slot>
 
-    <p>Nome:<br>
-    <input type="text" name="name" id="" value="{{ $user->name }}">
-    </p>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="p-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            
+            <form action="/edit/{{ $user->id }}" method="post">
+                {{csrf_field()}}
+                @method('put')
 
-    <p>Sexo:<br>
-    @if( $user->sex == 'M' )
-    <input type="radio" name="sex" value="M" checked>Masculino 
-    <input type="radio" name="sex" value="F">Feminino
-    @else
-    <input type="radio" name="sex" value="M">Masculino 
-    <input type="radio" name="sex" value="F" checked>Feminino
-    @endif
-    </p>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nome:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="name" id="" value="{{ $user->name }}">
+                    </div>
+                </div>
 
-    <p>
-    Email:<br>
-    <input type="email" name="email" id="" value="{{ $user->email }}">
-    </p>
+                <div class="form-group row">
+                    <legend class="col-form-label col-sm-2 pt-0">Sexo:</legend>
+                    <div class="col-sm-10">       
+                        
+                        @if( $user->sex == 'Masculino' )
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" value="Masculino" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" value="Feminino">
+                            <label class="form-check-label" for="gridRadios2">
+                                Feminino
+                            </label>
+                        </div>    
+                        @else
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" value="Masculino">
+                            <label class="form-check-label" for="gridRadios1">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" value="Feminino" checked>
+                            <label class="form-check-label" for="gridRadios2">
+                                Feminino
+                            </label>
+                        </div>
+                        @endif                        
 
-    <p>
-    Data de nascimento:<br>
-    <input type="date" name="birth" id="" value="{{ $user->birth }}">
-    </p>
+                    </div>
+                </div>
 
-    <p>
-    <input type="submit" value="Atualizar">
-    <input type="reset" value="Limpar">
-    </p>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="email" name="email" id="" value="{{ $user->email }}">
+                    </div>
+                </div>
 
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Password:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" name="password" id="" value="{{ $user->password }}">
+                    </div>
+                </div>
 
-    </form>
-</body>
-</html>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Data de nascimento:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="date" name="birth" id="" value="{{ $user->birth }}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-10" >
+                       <button class="btn btn-success" type="submit" value="Registrar" >Atualizar</button>
+
+                       <button class="btn btn-secondary" type="reset" value="Limpar" >Limpar</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</x-app-layout>
